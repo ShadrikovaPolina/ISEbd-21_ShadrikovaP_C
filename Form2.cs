@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace laba5
+namespace laba6
 {
     public partial class Form2 : Form
     {
@@ -52,7 +52,7 @@ namespace laba5
         private void panel1_DragDrop(object sender, DragEventArgs e)
         {
             switch (e.Data.GetData(DataFormats.Text).ToString())
-            {//случайным образом выбираем какой крокодил встанет
+            {//случайным образом выбираем какая машина встанет
                 case "Crocodile":
                     croc = new crocodile(150, Color.Green);
                     break;
