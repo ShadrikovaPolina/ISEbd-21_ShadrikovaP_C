@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba3
+namespace laba4
 {
-    interface Ianimal
+    public interface Ianimal
     {
         void move_croc(Graphics g);
         void draw_croc(Graphics g);

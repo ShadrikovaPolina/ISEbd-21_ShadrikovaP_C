@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba3
+namespace laba4
 {
     class alligator:crocodile
     {
