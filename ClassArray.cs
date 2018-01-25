@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba6
+namespace laba2
 {
     public class ClassArray<T>
     {
@@ -23,7 +23,7 @@ namespace laba6
         {
             if(p.places.Count == p.maxCount)
             {
-                return -1;
+                throw new RiverOverflowException();
             }
             for (int i = 0; i < p.places.Count; i++)
             {
@@ -45,7 +45,7 @@ namespace laba6
                 p.places.Remove(index);
                 return croc;
             }
-            return p.defaultValue;
+            throw new RiverIndexOutOfRangeException();
         }
 
         private bool CheckFreePlace(int index)

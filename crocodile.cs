@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba6
+namespace laba2
 {
     public class crocodile : Chordata
     {
@@ -29,9 +29,9 @@ namespace laba6
 
         }
 
-        public crocodile(int maxSpeed, Color color)
+        public crocodile(int maxSpeed, Color color )
         {
-
+           
             this.maxSpeed = maxSpeed;
             this.ColorBody = color;
             Random rand = new Random();

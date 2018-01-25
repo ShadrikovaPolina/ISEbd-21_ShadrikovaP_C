@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba6
+namespace laba2
 {
     public class alligator : crocodile
     {
         private bool umori;
         private Color dopColor;
 
-        public alligator(bool umori, int maxSpeed, Color color, Color dopColor) : base(maxSpeed, color)
+        public alligator(bool umori, int maxSpeed, Color color, Color dopColor) : base (maxSpeed, color) 
         {
             this.umori = umori;
-            this.dopColor = dopColor;
+            this.dopColor = dopColor;           
         }
 
         public alligator(string info) : base(info)
@@ -29,10 +29,8 @@ namespace laba6
                 dopColor = Color.FromName(strs[3]);
             }
         }
-        protected override void draw_sencroc(Graphics g)
-        {
-            if (umori)
-            {
+        protected override void draw_sencroc(Graphics g) {
+            if (umori) {
 
                 Brush br = new SolidBrush(dopColor);
                 g.FillEllipse(br, startPosx - 32, startPosy - 27, 8, 22);
