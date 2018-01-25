@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba4
+namespace laba5
 {
     public interface Ianimal
     {
@@ -14,5 +14,6 @@ namespace laba4
         void setPosition(int x, int y);
         void setSpeed(int speed);
         void setMass(int mass);
+        void setMainColor(Color color);
     }
 }

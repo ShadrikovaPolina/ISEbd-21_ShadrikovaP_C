@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba4
+namespace laba5
 {
-    class alligator:crocodile
+    public class alligator : crocodile
     {
         private bool umori;
         private Color dopColor;
@@ -27,7 +27,11 @@ namespace laba4
                 g.FillEllipse(br, startPosx - 32, startPosy + 5, 8, 22);
             }
             base.draw_sencroc(g);
+        }
 
+        public void setDopColor(Color color)
+        {
+            dopColor = color;
         }
     }
 }

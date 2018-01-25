@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba4
+namespace laba5
 {
     public class ClassArray<T>
     {
@@ -21,7 +21,7 @@ namespace laba4
 
         public static int operator +(ClassArray<T> p, T croc)
         {
-            if (p.places.Count == p.maxCount)
+            if(p.places.Count == p.maxCount)
             {
                 return -1;
             }
