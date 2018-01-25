@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba2
+namespace laba3
 {
     class crocodile : Chordata
     {
@@ -26,9 +26,10 @@ namespace laba2
                     base.maxSpeed = 150;
                 }
             }
+
         }
 
-        public crocodile(int maxSpeed, Color color)
+        public crocodile(int maxSpeed, Color color )
         {
             this.maxSpeed = maxSpeed;
             this.ColorBody = color;
@@ -73,5 +74,6 @@ namespace laba2
             g.FillEllipse(br1, startPosx - 10, startPosy - 7, 5, 5);
             g.FillEllipse(br1, startPosx - 10, startPosy + 2, 5, 5);
         }
+
     }
 }
