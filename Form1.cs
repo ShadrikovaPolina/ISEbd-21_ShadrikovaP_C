@@ -156,10 +156,15 @@ namespace laba2
                 {
                     MessageBox.Show(ex.Message, "Ошибка переполнения", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                catch (RiverAlreadyHaveException ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка повтора", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Общая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                
             }
         }
 
@@ -193,6 +198,12 @@ namespace laba2
                 }
                 Draw();
             }
+        }
+
+        private void buttonSort_Click(object sender, EventArgs e)
+        {
+            river.Sort();
+            Draw();
         }
     }
 }

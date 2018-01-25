@@ -64,14 +64,12 @@ namespace laba2
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < countPlaces; i++)
-            {
-                var croc = riverStages[currentLevel][i];
-                if (croc != null)
-                {//если место не пустое
-                    croc.setPosition(5 + i / 5 * placeSizeWidth + 90, i % 5 * placeSizeHeight + 40);
-                    croc.draw_croc(g);
-                }
+            int i = 0;
+            foreach (var croc in riverStages[currentLevel])
+            {        
+                croc.setPosition(5 + i / 5 * placeSizeWidth + 90, i % 5 * placeSizeHeight + 40);
+                croc.draw_croc(g);
+                i++;
             }
         }
 
@@ -202,6 +200,11 @@ namespace laba2
                 }
             }
             return true;
+        }
+
+        public void Sort()
+        {
+            riverStages.Sort();
         }
     }
 }

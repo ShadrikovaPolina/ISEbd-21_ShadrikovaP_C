@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace laba2
 {
-    public class alligator : crocodile
+    public class alligator : crocodile, IComparable<alligator>, IEquatable<alligator>
     {
         private bool umori;
         private Color dopColor;
@@ -49,6 +49,64 @@ namespace laba2
         public override string getInfo()
         {
             return maxSpeed + ";" + ColorBody.Name + ";" + umori + ";" + dopColor;
+        }
+
+        public int CompareTo(alligator other)
+        {
+            var res = (this is crocodile).CompareTo(other is crocodile);
+            if (res != 0)
+            {
+                return res;
+            }
+            if (umori != other.umori)
+            {
+                return umori.CompareTo(other.umori);
+            }
+            if (dopColor != other.dopColor)
+            {
+                dopColor.Name.CompareTo(other.dopColor.Name);
+            }
+            return 0;
+        }
+
+        public bool Equals(alligator other)
+        {
+            var res = (this is crocodile).Equals(other is crocodile);
+            if (!res)
+            {
+                return res;
+            }
+            if (umori != other.umori)
+            {
+                return false;
+            }
+            if (dopColor != other.dopColor)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            alligator crocObj = obj as alligator;
+            if (crocObj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(crocObj);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
