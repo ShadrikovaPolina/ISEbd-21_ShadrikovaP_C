@@ -1,52 +1,47 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ClassArray<T> {
-	private ArrayList<T> places;
+	private HashMap<Integer, T> places;
+	private int maxCount;
 	private T defaultValue;
 
 	public ClassArray(int size, T defVal) {
-		defaultValue = null;
-		places = new ArrayList<T>();
-		for (int i = 0; i < size; i++) {
-			places.add(i, defVal);
-		}
+		defaultValue = defVal;
+		places = new HashMap<Integer, T>();
+		maxCount = size;
 	}
 
-	public int add(ClassArray<T> p, T crocodile) {
-		for (int i = 0; i < p.places.size(); i++) {
-			if (p.checkFreePlace(i)) {
-				p.places.set(i, crocodile);
+	public int add(T crocodile) {
+		if (this.places.size() == this.maxCount) {
+			return -1;
+		}
+		for (int i = 0; i < this.places.size(); i++) {
+			if (this.checkFreePlace(i)) {
+				this.places.put(i, crocodile);
 				return i;
 			}
 		}
-		return -1;
+		this.places.put(this.places.size(), crocodile);
+		return this.places.size() - 1;
 	}
 
 	private boolean checkFreePlace(int index) {
-		if (index < 0 || index > places.size()) {
-			return false;
-		}
-		if (places.get(index) == null) {
-			return true;
-		}
-		if (places.get(index).equals(defaultValue)) {
-			return true;
-		}
-		return false;
+		return !places.containsKey(index);
 	}
 
-	public T dec(ClassArray<T> p, int index) {
-		if (!p.checkFreePlace(index)) {
-			T crocodile = p.places.get(index);
-			p.places.set(index, null);
+	public T dec(int index) {
+		if (this.places.containsKey(index)) {
+			T crocodile = this.getObject(index);
+			this.places.remove(index);
 			return crocodile;
 		}
-		return p.defaultValue;
+		return this.defaultValue;
 	}
 
 	public T getObject(int ind) {
-		if (ind > -1 && ind < places.size()) {
-			return places.get(ind);
+		if (ind > -1 && ind < maxCount) {
+			if (places.containsKey(ind))
+				return places.get(ind);
 		}
 		return defaultValue;
 	}

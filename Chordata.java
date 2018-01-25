@@ -22,7 +22,7 @@ public abstract class Chordata implements IAnimal {
 	protected void setMaxSpeed(int maxSpeed) {
 		this.maxSpeed = maxSpeed;
 	}
-	
+
 	public Color getColorBody() {
 		return colorBody;
 	}
