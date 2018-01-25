@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace laba2
 {
-    public class crocodile : Chordata
+    public class crocodile : Chordata, IComparable<crocodile>, IEquatable<crocodile>
     {
         public override int maxSpeed
         {
@@ -26,12 +26,10 @@ namespace laba2
                     base.maxSpeed = 150;
                 }
             }
-
         }
 
         public crocodile(int maxSpeed, Color color )
-        {
-           
+        {          
             this.maxSpeed = maxSpeed;
             this.ColorBody = color;
             Random rand = new Random();
@@ -92,6 +90,62 @@ namespace laba2
         public override string getInfo()
         {
             return maxSpeed + ";" + ColorBody.Name;
+        }
+
+        public int CompareTo(crocodile other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+            if (maxSpeed != other.maxSpeed)
+            {
+                return maxSpeed.CompareTo(other.maxSpeed);
+            }
+            if (ColorBody != other.ColorBody)
+            {
+                ColorBody.Name.CompareTo(other.ColorBody.Name);
+            }
+            return 0;
+        }
+
+        public bool Equals(crocodile other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (maxSpeed != other.maxSpeed)
+            {
+                return false;
+            }
+            if (ColorBody != other.ColorBody)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            crocodile crocObj = obj as crocodile;
+            if (crocObj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(crocObj);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return maxSpeed.GetHashCode();
         }
     }
 }
