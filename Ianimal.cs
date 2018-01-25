@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba6
+namespace laba2
 {
     public interface Ianimal
     {

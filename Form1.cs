@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace laba6
+namespace laba2
 {
     public partial class Form1 : Form
     {
@@ -16,10 +17,13 @@ namespace laba6
         River river;
 
         Form2 form;
+
+        private Logger log;
         
         public Form1()
         {
             InitializeComponent();
+            log = LogManager.GetCurrentClassLogger();
             river = new River(5);
             for (int i = 1; i < 6; i++)
             {
@@ -80,19 +84,24 @@ namespace laba6
                 string level = listBox1.Items[listBox1.SelectedIndex].ToString();
                 if (maskedTextBox1.Text != "")
                 {
-                    Ianimal croc = river.GetCrocInRiver(Convert.ToInt32(maskedTextBox1.Text));
-                    if (croc != null)
-                    {//если удалось забрать, то отрисовываем
+                    try
+                    {
+                        Ianimal croc = river.GetCrocInRiver(Convert.ToInt32(maskedTextBox1.Text));
                         Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
                         Graphics gr = Graphics.FromImage(bmp);
                         croc.setPosition(90, 50);
                         croc.draw_croc(gr);
                         pictureBox2.Image = bmp;
                         Draw();
+                        log.Info("Забрали с места: " + Convert.ToInt32(maskedTextBox1.Text));
                     }
-                    else
-                    {//иначе сообщаем об этом
-                        MessageBox.Show("Извините, на этом месте нет крокодила");
+                    catch (RiverIndexOutOfRangeException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Неверный номер", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Общая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
@@ -108,6 +117,7 @@ namespace laba6
         {
             river.LevelDown();
             listBox1.SelectedIndex = river.getCurrentLevel;
+            log.Info("Переход на уровень ниже. Текущий уровень: " + river.getCurrentLevel);
             Draw();
         }
 
@@ -115,6 +125,7 @@ namespace laba6
         {
             river.LevelUp();
             listBox1.SelectedIndex = river.getCurrentLevel;
+            log.Info("Переход на уровень выше. Текущий уровень: " + river.getCurrentLevel);
             Draw();
         }
 
@@ -134,15 +145,20 @@ namespace laba6
         {
             if (croc != null)
             {
-                int place = river.PutCrocInRiver(croc);
-                if (place > -1)
+                try
                 {
+                    int place = river.PutCrocInRiver(croc);
                     Draw();
-                    MessageBox.Show("Ваше место: " + place);
+                    log.Info("Добавление на место: " + place);
+                    MessageBox.Show("Ваше место: " + place);                
                 }
-                else
+                catch (RiverOverflowException ex)
                 {
-                    MessageBox.Show("Крокодила не удалось запустить");
+                    MessageBox.Show(ex.Message, "Ошибка переполнения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Общая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

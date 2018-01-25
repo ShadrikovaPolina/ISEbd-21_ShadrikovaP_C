@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba6
+namespace laba2
 {
     public class River
     {
@@ -21,7 +21,7 @@ namespace laba6
         int placeSizeHeight = 80;
         // Текущий уровень
         int currentLevel;
-
+        
         // Получить текущий уровень
         public int getCurrentLevel { get { return currentLevel; } }
 
