@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace laba4
+namespace laba5
 {
     public partial class Form1 : Form
     {
         River river;
 
+        Form2 form;
+        
         public Form1()
         {
             InitializeComponent();
@@ -118,6 +120,30 @@ namespace laba4
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            form = new Form2();
+            form.AddEvent(AddCroc);
+            form.Show();
+        }
+
+        private void AddCroc(Ianimal croc)
+        {
+            if (croc != null)
+            {
+                int place = river.PutCrocInRiver(croc);
+                if (place > -1)
+                {
+                    Draw();
+                    MessageBox.Show("Ваше место: " + place);
+                }
+                else
+                {
+                    MessageBox.Show("Технику не удалось поставить");
+                }
+            }
         }
     }
 }

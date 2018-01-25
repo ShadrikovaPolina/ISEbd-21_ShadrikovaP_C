@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace laba4
+namespace laba5
 {
+    public delegate void myDel(laba5.Ianimal croc);
     static class Program
     {
         /// <summary>

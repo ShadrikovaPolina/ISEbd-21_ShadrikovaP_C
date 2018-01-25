@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba4
+namespace laba5
 {
     public class River
     {

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba4
+namespace laba5
 {
-    class crocodile : Chordata
+    public class crocodile : Chordata
     {
         public override int maxSpeed
         {

@@ -1,4 +1,4 @@
-﻿namespace laba4
+﻿namespace laba5
 {
     partial class Form1
     {
@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button8 = new System.Windows.Forms.Button();
@@ -40,6 +38,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -50,29 +49,9 @@
             this.pictureBox1.Location = new System.Drawing.Point(17, 10);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(841, 500);
+            this.pictureBox1.Size = new System.Drawing.Size(848, 500);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(875, 195);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 37);
-            this.button6.TabIndex = 10;
-            this.button6.Text = "Кинуть в реку крокодила";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(875, 238);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(100, 39);
-            this.button7.TabIndex = 11;
-            this.button7.Text = "Кинуть в реку аллигатора";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // groupBox1
             // 
@@ -126,14 +105,14 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(875, 41);
+            this.listBox1.Location = new System.Drawing.Point(870, 41);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(100, 95);
             this.listBox1.TabIndex = 13;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(875, 142);
+            this.button1.Location = new System.Drawing.Point(873, 142);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(40, 46);
             this.button1.TabIndex = 14;
@@ -143,7 +122,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(937, 143);
+            this.button2.Location = new System.Drawing.Point(924, 143);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(38, 45);
             this.button2.TabIndex = 15;
@@ -154,25 +133,34 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(901, 25);
+            this.label1.Location = new System.Drawing.Point(873, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 16;
             this.label1.Text = "Уровни:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(870, 217);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(91, 45);
+            this.button3.TabIndex = 17;
+            this.button3.Text = "Заказать крокодила";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 521);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
@@ -189,8 +177,6 @@
 
         #endregion
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button8;
@@ -200,6 +186,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button3;
     }
 }
 
