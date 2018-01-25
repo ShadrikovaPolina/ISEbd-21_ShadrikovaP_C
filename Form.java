@@ -3,12 +3,13 @@ import javax.swing.JFrame;
 import java.awt.*;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.border.LineBorder;
 
 public class Form {
 
@@ -20,7 +21,12 @@ public class Form {
 	int weight;
 	private River river;
 	private JTextField textField;
+	JList<String> list;
+	RiverPanel panel;
 
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -34,23 +40,63 @@ public class Form {
 		});
 	}
 
+	/**
+	 * Create the application.
+	 */
 	public Form() {
-		river = new River();
+		river = new River(4);
+		DefaultListModel<String> model = new DefaultListModel<String>();
+		for (int i = 1; i < 5; i++) {
+			model.addElement("Уровень " + i);
+		}
+		list = new JList<String>(model);
+		list.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		list.setSelectedIndex(river.GetCurrentLevel());
 		initialize();
 		color = new Color(0, 128, 0);
 		eyeColor = Color.WHITE;
 		maxSpeed = 20;
 		maxCountFood = 10;
 		weight = 50;
+		Draw();
+	}
+
+	private void Draw() {
+		if (list.getSelectedIndex() > -1) {
+			panel.updateRiverPanel(river);
+		}
 	}
 
 	private void initialize() {
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 900, 497);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		RiverPanel panel = new RiverPanel(river);
+		JButton btnDown = new JButton("<<");
+		btnDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				river.levelDown();
+				list.setSelectedIndex(river.GetCurrentLevel());
+				Draw();
+			}
+		});
+		btnDown.setBounds(696, 118, 60, 38);
+		frame.getContentPane().add(btnDown);
+
+		JButton btnUp = new JButton(">>");
+		btnUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				river.levelUp();
+				list.setSelectedIndex(river.GetCurrentLevel());
+				Draw();
+			}
+		});
+		btnUp.setBounds(796, 118, 60, 38);
+		frame.getContentPane().add(btnUp);
+
+		panel = new RiverPanel(river);
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(10, 11, 660, 432);
 		frame.getContentPane().add(panel);
@@ -75,7 +121,7 @@ public class Form {
 				}
 			}
 		});
-		button_2.setBounds(690, 34, 160, 32);
+		button_2.setBounds(696, 183, 160, 23);
 		frame.getContentPane().add(button_2);
 
 		JButton button_3 = new JButton(
@@ -93,7 +139,7 @@ public class Form {
 				}
 			}
 		});
-		button_3.setBounds(690, 90, 160, 32);
+		button_3.setBounds(696, 217, 160, 23);
 		frame.getContentPane().add(button_3);
 
 		JLabel label = new JLabel("\u041C\u0435\u0441\u0442\u043E");
@@ -106,11 +152,11 @@ public class Form {
 				if (textField.getText() != "") {
 					IAnimal inter = river.GetAlligatorFromRiver(Integer.parseInt(textField.getText()) - 1);
 					if (inter != null) {
-						inter.setPosition(15, 35);
 						panel.updateRiverPanel(river);
+						inter.setPosition(15, 35);
 						panel_1.updatePanel(inter);
 					} else {
-						JOptionPane.showMessageDialog(null, "Место уже пустое", "", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Место пустое", "", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 			}
@@ -123,5 +169,9 @@ public class Form {
 		textField.setBounds(828, 248, 46, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
+
+		list.setBorder(new LineBorder(new Color(0, 0, 0)));
+		list.setBounds(696, 11, 160, 96);
+		frame.getContentPane().add(list);
 	}
 }

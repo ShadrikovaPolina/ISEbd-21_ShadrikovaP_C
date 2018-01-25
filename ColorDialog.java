@@ -12,7 +12,7 @@ public class ColorDialog extends JDialog {
 	private JSlider jslBlue = new JSlider(0, 255);
 
 	private JButton jbtOK = new JButton("OK");
-	private JButton jbtCancel = new JButton("Отмена");
+	private JButton jbtCancel = new JButton("Cancel");
 
 	private JPanel jpSelectedColor = new JPanel();
 
@@ -23,7 +23,7 @@ public class ColorDialog extends JDialog {
 	public ColorDialog(java.awt.Frame parent, boolean modal, Color colorD) {
 		super(parent, modal);
 		jpSelectedColor.setVisible(true);
-		setTitle("Выберите цвет");
+		setTitle("Choose Color");
 		redValue = colorD.getRed();
 		greenValue = colorD.getGreen();
 		blueValue = colorD.getBlue();
@@ -37,9 +37,9 @@ public class ColorDialog extends JDialog {
 
 		JPanel jpLabels = new JPanel();
 		jpLabels.setLayout(new GridLayout(3, 0));
-		jpLabels.add(new JLabel("Красный"));
-		jpLabels.add(new JLabel("Зелёный"));
-		jpLabels.add(new JLabel("Голубой"));
+		jpLabels.add(new JLabel("Red"));
+		jpLabels.add(new JLabel("Green"));
+		jpLabels.add(new JLabel("Blue"));
 
 		JPanel jpSliders = new JPanel();
 		jpSliders.setLayout(new GridLayout(3, 0));
@@ -49,7 +49,7 @@ public class ColorDialog extends JDialog {
 
 		JPanel jpSelectColor = new JPanel();
 		jpSelectColor.setLayout(new BorderLayout());
-		jpSelectColor.setBorder(BorderFactory.createTitledBorder("Установить"));
+		jpSelectColor.setBorder(BorderFactory.createTitledBorder("Select Color"));
 		jpSelectColor.add(jpLabels, BorderLayout.WEST);
 		jpSelectColor.add(jpSliders, BorderLayout.CENTER);
 
