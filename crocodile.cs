@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba5
+namespace laba6
 {
     public class crocodile : Chordata
     {
@@ -29,10 +29,24 @@ namespace laba5
 
         }
 
-        public crocodile(int maxSpeed, Color color )
+        public crocodile(int maxSpeed, Color color)
         {
+
             this.maxSpeed = maxSpeed;
             this.ColorBody = color;
+            Random rand = new Random();
+            startPosx = rand.Next(100, 200);
+            startPosy = rand.Next(100, 200);
+        }
+
+        public crocodile(string info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 2)
+            {
+                maxSpeed = Convert.ToInt32(strs[0]);
+                ColorBody = Color.FromName(strs[1]);
+            }
             Random rand = new Random();
             startPosx = rand.Next(100, 200);
             startPosy = rand.Next(100, 200);
@@ -75,5 +89,9 @@ namespace laba5
             g.FillEllipse(br1, startPosx - 10, startPosy + 2, 5, 5);
         }
 
+        public override string getInfo()
+        {
+            return maxSpeed + ";" + ColorBody.Name;
+        }
     }
 }

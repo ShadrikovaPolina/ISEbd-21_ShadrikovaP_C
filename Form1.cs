@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace laba5
+namespace laba6
 {
     public partial class Form1 : Form
     {
+        // река
         River river;
 
         Form2 form;
@@ -52,7 +53,7 @@ namespace laba5
                 var croc = new crocodile(150, dialog.Color);
                 int place = river.PutCrocInRiver(croc);
                 Draw();
-                MessageBox.Show("Ваше место: " +(1+ place));
+                MessageBox.Show("Ваше место: " + (place));
             }
         }
 
@@ -67,12 +68,12 @@ namespace laba5
                     var croc = new alligator(true, 150, dialog.Color, dialogDop.Color);
                     int place = river.PutCrocInRiver(croc);
                     Draw();
-                    MessageBox.Show("Ваше место: " +(1+ place));
+                    MessageBox.Show("Ваше место: " + (place));
                 }
             }
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void buttonHome_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex > -1)
             {
@@ -84,14 +85,14 @@ namespace laba5
                     {//если удалось забрать, то отрисовываем
                         Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
                         Graphics gr = Graphics.FromImage(bmp);
-                        croc.setPosition(5, 5);
+                        croc.setPosition(90, 50);
                         croc.draw_croc(gr);
                         pictureBox2.Image = bmp;
                         Draw();
                     }
                     else
                     {//иначе сообщаем об этом
-                        MessageBox.Show("Извините, на этом месте нет машины");
+                        MessageBox.Show("Извините, на этом месте нет крокодила");
                     }
                 }
 
@@ -103,14 +104,14 @@ namespace laba5
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonDown_Click(object sender, EventArgs e)
         {
             river.LevelDown();
             listBox1.SelectedIndex = river.getCurrentLevel;
             Draw();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonUp_Click(object sender, EventArgs e)
         {
             river.LevelUp();
             listBox1.SelectedIndex = river.getCurrentLevel;
@@ -122,7 +123,7 @@ namespace laba5
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonGet_Click(object sender, EventArgs e)
         {
             form = new Form2();
             form.AddEvent(AddCroc);
@@ -141,8 +142,40 @@ namespace laba5
                 }
                 else
                 {
-                    MessageBox.Show("Технику не удалось поставить");
+                    MessageBox.Show("Крокодила не удалось запустить");
                 }
+            }
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (river.SaveData(saveFileDialog1.FileName))
+                {
+                    MessageBox.Show("Сохранение прошло успешно", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не сохранилось", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (river.LoadData(openFileDialog1.FileName))
+                {
+                    MessageBox.Show("Загрузили", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+
+                    MessageBox.Show("Не загрузили", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Draw();
             }
         }
     }

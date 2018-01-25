@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace laba5
+namespace laba6
 {
     public abstract class Chordata : Ianimal
     {
@@ -32,6 +32,8 @@ namespace laba5
         public virtual void setMainColor(Color color)
         {
             ColorBody = color;
-        }    
+        }
+
+        public abstract string getInfo();
     }
 }
