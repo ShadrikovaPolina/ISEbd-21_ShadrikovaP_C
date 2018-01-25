@@ -8,112 +8,76 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace laba2
+namespace laba3
 {
     public partial class Form1 : Form
     {
-        Color color;
-        Color dopColor;
-        int maxSpeed;
-        int mass;
-
-        private Ianimal animal;
-
+        River river;
 
         public Form1()
         {
             InitializeComponent();
-            color = Color.LightGreen;
-            dopColor = Color.Brown;
-            maxSpeed = 150;
-            mass = 200;
-            textBox1.Text = "" + maxSpeed;
-            textBox2.Text = "" + mass;
+            river = new laba3.River();
+            Draw();
         }
 
-        private bool checkFields()
+        private void Draw()
         {
-            if (!int.TryParse(textBox1.Text, out maxSpeed))
-            {
-                return false;
-            }
-            if (!int.TryParse(textBox2.Text, out mass))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            if (checkFields())
-            {
-                animal = new crocodile(150, color);
-                Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                Graphics gr = Graphics.FromImage(bmp);
-                animal.draw_croc(gr);
-                pictureBox1.Image = bmp;
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (checkFields())
-            {
-                animal = new alligator(true, 150, color, dopColor);
-                Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                Graphics gr = Graphics.FromImage(bmp);
-                animal.draw_croc(gr);
-                pictureBox1.Image = bmp;
-            }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (animal != null)
-            {
-                Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                Graphics gr = Graphics.FromImage(bmp);
-                animal.move_croc(gr);
-                pictureBox1.Image = bmp;
-
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            ColorDialog cd = new ColorDialog();
-            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                color = cd.Color;
-                button4.BackColor = color;
-            }
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            ColorDialog cd = new ColorDialog();
-            if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                dopColor = cd.Color;
-                button5.BackColor = dopColor;
-            }
+            Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Graphics gr = Graphics.FromImage(bmp);
+            river.Draw(gr, pictureBox1.Width, pictureBox1.Height);
+            pictureBox1.Image = bmp;
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var croc = new crocodile(150, dialog.Color);
+                int place = river.PutCrocInRiver(croc);
+                Draw();
+                MessageBox.Show("Ваше место: " +(1+ place));
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ColorDialog dialogDop = new ColorDialog();
+                if (dialogDop.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    var croc = new alligator(true, 150, dialog.Color, dialogDop.Color);
+                    int place = river.PutCrocInRiver(croc);
+                    Draw();
+                    MessageBox.Show("Ваше место: " +(1+ place));
+                }
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (maskedTextBox1.Text != "")
+            {
+                var croc = river.GetCrocInRiver(Convert.ToInt32(maskedTextBox1.Text));
+
+                Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+                Graphics gr = Graphics.FromImage(bmp);
+                croc.setPosition(100, 50);
+                croc.draw_croc(gr);
+                pictureBox2.Image = bmp;
+                Draw();
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
         {
 
         }
