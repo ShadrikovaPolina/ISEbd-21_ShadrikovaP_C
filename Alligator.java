@@ -2,7 +2,6 @@ import java.awt.*;
 
 public class Alligator extends Crocodile {
 	private Color eyeColor;
-	private boolean isRoar;
 	private boolean tooth;
 
 	public Alligator(boolean tooth, int maxSpeed, int maxCounFood, double weight,
