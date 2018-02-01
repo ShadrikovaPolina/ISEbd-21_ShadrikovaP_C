@@ -4,7 +4,8 @@ public class Alligator extends Crocodile {
 	private Color eyeColor;
 	private boolean tooth;
 
-	public Alligator(boolean tooth, int maxSpeed, int maxCounFood, double weight, Color color, Color eyeColor) {
+	public Alligator(boolean tooth, int maxSpeed, int maxCounFood, double weight,
+			Color color, Color eyeColor) {
 		super(maxSpeed, maxCounFood, weight, color);
 		this.eyeColor = eyeColor;
 		this.tooth = tooth;

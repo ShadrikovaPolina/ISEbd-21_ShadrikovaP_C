@@ -11,7 +11,7 @@ public class ColorDialog extends JDialog {
 	private JSlider jslGreen = new JSlider(0, 255);
 	private JSlider jslBlue = new JSlider(0, 255);
 
-	private JButton jbtOK = new JButton("ОК");
+	private JButton jbtOK = new JButton("OK");
 	private JButton jbtCancel = new JButton("Отмена");
 
 	private JPanel jpSelectedColor = new JPanel();
@@ -49,7 +49,7 @@ public class ColorDialog extends JDialog {
 
 		JPanel jpSelectColor = new JPanel();
 		jpSelectColor.setLayout(new BorderLayout());
-		jpSelectColor.setBorder(BorderFactory.createTitledBorder("Выбрать цвет"));
+		jpSelectColor.setBorder(BorderFactory.createTitledBorder("Установить"));
 		jpSelectColor.add(jpLabels, BorderLayout.WEST);
 		jpSelectColor.add(jpSliders, BorderLayout.CENTER);
 

@@ -5,9 +5,9 @@ public abstract class Chordata implements IAnimal {
 	protected int startPoseY;
 	protected int countFood;
 	protected int maxCountFood;
-    protected int maxSpeed;
-    protected Color colorBody;
-    protected double weight;
+	protected int maxSpeed;
+	protected Color colorBody;
+	protected double weight;
 
 	public int getMaxCountFood() {
 		return maxCountFood;
@@ -15,7 +15,7 @@ public abstract class Chordata implements IAnimal {
 	protected void setMaxCountFood(int maxCountFood) {
 		this.maxCountFood = maxCountFood;
 	}
-	
+
 	public int getMaxSpeed() {
 		return maxSpeed;
 	}
@@ -28,7 +28,7 @@ public abstract class Chordata implements IAnimal {
 	}
 	protected void setColorBody(Color color) {
 		this.colorBody = color;
-	}	
+	}
 
 	public double getWeight() {
 		return weight;
@@ -39,7 +39,7 @@ public abstract class Chordata implements IAnimal {
 
 	public abstract void moveAnimal();
 	public abstract void drawAnimal(Graphics g);
-	
+
 	public void setPosition(int x, int y) {
 		startPoseX = x;
 		startPoseY = y;
